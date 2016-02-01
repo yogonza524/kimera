@@ -34,7 +34,8 @@
 
 <p>Supongamos que tenemos una tienda de mascotas, en la misma existen mascotas, empleados, accesorios, jaulas, etc. Nuestra base de datos tendra minimamente las tablas "mascota","empleados",etc. Primeramente mapeamos la base de datos utilizando Hibernate Tools (creamos los archivos hibernate.cfg.xml, hibernate.revenge.xml y los correspondientes POJO's) y ya estamos en condiciones de utilizar Hibernate Kimera.</p>
 
-<div class="highlight highlight-source-java"><pre><span class="pl-smi">Kimera</span> k <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Kimera</span>()</pre></div>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">Kimera</span> k <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Kimera</span>();
+<span class="pl-smi">Mascota</span> gato <span class="pl-k">=</span> k<span class="pl-k">.</span>byID(<span class="pl-s"><span class="pl-pds">"</span>nombre<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Tom<span class="pl-pds">"</span></span>, <span class="pl-smi">Mascota</span><span class="pl-k">.</span>class); <span class="pl-c">//Toda mascota tiene un nombre, existe en la tabla Mascota una mascota con nombre = "Tom"</span></pre></div>
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
