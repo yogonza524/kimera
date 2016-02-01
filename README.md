@@ -119,6 +119,19 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.807 sec
 **withRestrictions(List<Criterion> restrictions, Class type)**: obtiene una lista de objetos del tipo class declarado a partir de una lista de restricciones del tipo Criterion<br />
 **callProcedure(String query, Map<String,Object> params)**: realiza una llamada de bajo nivel a la base de datos, muy útil para ejecutar procedimientos almacenados, seleccionar vistas u otras operaciones complejas<br />
 **betweenDates(String field, Date first, Date second, Class type)**: obtiene una lista de objetos del tipo class declarado a partir de dos fechas. La tabla debe contener una columna de tipo date.<br />
+# Incluir el artefacto en tu proyecto
+Podes utilizar el siguiente artefacto para descargar Kimera en tu proyecto
+```xml
+<repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+</repository>
+<dependency>
+      <groupId>com.github.yogonza524</groupId>
+      <artifactId>kimera</artifactId>
+      <version>1.0</version>
+</dependency>
+```
 # Licencia
 MIT
 # Agradecimientos
