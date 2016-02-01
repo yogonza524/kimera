@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-ene-2016 19:36:24 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.core.entities.Numeros" table="numeros" schema="public" optimistic-lock="version">
+        <comment>Tabla con numeros de telefonos de clientes de saldo virtual</comment>
+        <id name="numero" type="string">
+            <column name="numero" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="operadora" type="string">
+            <column name="operadora" length="32" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
