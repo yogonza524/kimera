@@ -35,17 +35,25 @@
 <p>Supongamos que tenemos una tienda de mascotas, en la misma existen mascotas, empleados, accesorios, jaulas, etc. Nuestra base de datos tendra minimamente las tablas "mascota","empleados",etc. Primeramente mapeamos la base de datos utilizando Hibernate Tools (creamos los archivos hibernate.cfg.xml, hibernate.revenge.xml y los correspondientes POJO's) y ya estamos en condiciones de utilizar Hibernate Kimera.</p>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-smi">Kimera</span> k <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Kimera</span>();
-<span class="pl-smi">Mascota</span> gato <span class="pl-k">=</span> k<span class="pl-k">.</span>byID(<span class="pl-s"><span class="pl-pds">"</span>nombre<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Tom<span class="pl-pds">"</span></span>, <span class="pl-smi">Mascota</span><span class="pl-k">.</span>class); <span class="pl-c">//Toda mascota tiene un nombre, existe en la tabla Mascota una mascota con nombre = "Tom"</span></pre></div>
+<span class="pl-smi">Mascota</span> gato <span class="pl-k">=</span> k<span class="pl-k">.</span>byID(<span class="pl-s"><span class="pl-pds">"</span>nombre<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Tom<span class="pl-pds">"</span></span>, <span class="pl-smi">Mascota</span><span class="pl-k">.</span>class); <span class="pl-c">//Toda mascota tiene un nombre, existe en la tabla Mascota una mascota con nombre = "Tom"</span>
+<span class="pl-smi">Empleado</span> emp <span class="pl-k">=</span> k<span class="pl-k">.</span>byID(<span class="pl-s"><span class="pl-pds">"</span>dni<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>34093153<span class="pl-pds">"</span></span>, <span class="pl-smi">Empleado</span><span class="pl-k">.</span>class); <span class="pl-c">//Obtiene el empleado con DNI=34093153 de la tabla empleado</span>
+<span class="pl-k">List&lt;<span class="pl-smi">Accesorio</span>&gt;</span> accesorios <span class="pl-k">=</span> k<span class="pl-k">.</span>all(<span class="pl-smi">Accesorio</span><span class="pl-k">.</span>class); <span class="pl-c">//Obtiene todos los accesorios de la tabla accesorio</span>
+<span class="pl-smi">Mascota</span> bethoven <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Mascota</span>();
+bethoven<span class="pl-k">.</span>setNombre(<span class="pl-s"><span class="pl-pds">"</span>Bethoven<span class="pl-pds">"</span></span>);
+bethoven<span class="pl-k">.</span>setRaza(<span class="pl-s"><span class="pl-pds">"</span>Perro<span class="pl-pds">"</span></span>);
+k<span class="pl-k">.</span>add(bethoven); <span class="pl-c">//Agrega una nueva mascota a la tabla Mascota</span></pre></div>
+
+<p>Como se puede apreciar el objeto Kimera infiere los tipos de objetos devueltos a partir de la clase pasada como parametro, esto posibilita que la libreria ofrezca una flexibilidad y reutilización muy alta. </p>
 
 <h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a id="sobre-el-autor" class="anchor" href="#sobre-el-autor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sobre el autor</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>Hibernate Kimera es una idea de Gonzalo H. Mendoza, Desarrollador Java Jr. En su afan de resolver problemas de diferentes índoles pensó y escribió el código base de Hibernate Kimera, compartiendo su conocimiento con todo aquel que quiera usarlo para realizar nuevos desarrollos.</p>
 
 <h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a id="te-interesa-contactarnos" class="anchor" href="#te-interesa-contactarnos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>¿Te interesa contactarnos?</h3>
 
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<p>Visitanos en Facebook <a href="https://www.facebook.com/dividsoftware/">Div-ID Software</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/yogonza524/kimera">Hibernate Kimera</a> is maintained by <a href="https://github.com/yogonza524">yogonza524</a>.</span>
