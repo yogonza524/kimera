@@ -129,7 +129,7 @@ Podes utilizar el siguiente artefacto para descargar Kimera en tu proyecto
 <dependency>
       <groupId>com.github.yogonza524</groupId>
       <artifactId>kimera</artifactId>
-      <version>1.0</version>
+      <version>1.0.1</version>
 </dependency>
 ```
 # Licencia
