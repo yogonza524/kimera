@@ -338,4 +338,20 @@ public class Kimera {
         }
         return (T) result;
     }
+    public <T> T listWithRestrictionsAndOrder(List<Criterion> restrictions, Order o, Class type){
+        sf = HibernateUtil.getSessionFactory();
+        List<T> result = null;
+        try {
+            Session s = sf.openSession();
+            Criteria c = s.createCriteria(type);
+            for(Criterion r : restrictions){
+                c.add(r);
+            }
+            result = c.addOrder(o).list();
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (T) result;
+    }
 }
