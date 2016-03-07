@@ -32,6 +32,10 @@ public class Kimera {
      *
      */
     protected static SessionFactory sf;
+
+    public Kimera(SessionFactory sessionFactory) {
+        Kimera.sf = sessionFactory;
+    }
     
     /**
      * List all object in a table
@@ -40,7 +44,6 @@ public class Kimera {
      * @return List of entity object for table T. Object receiver must be the type List<type>
      */
     public <T> T all(Class type){
-        sf = HibernateUtil.getSessionFactory();
         Session s = sf.openSession();
         List<T> l = s.createCriteria(type).list();
         for(Object o : l){
@@ -56,8 +59,7 @@ public class Kimera {
      * @param id represents the id for the table. Can be an Integer, String, etc. Depends the Table design.
      * @return Entity object width the fields initialized with Hibernate
      */
-    public <T> T byId(String key,Object id, Class type){
-        sf = HibernateUtil.getSessionFactory();
+    public <T> T entityById(String key,Object id, Class type){
         Session s = sf.openSession();
         T result = (T)s.createCriteria(type).add(Restrictions.eq(key, id)).setMaxResults(1).uniqueResult();
         Hibernate.initialize(result);
@@ -65,14 +67,12 @@ public class Kimera {
         //result = this.initialize(result);
         return result;
     }
-    
     /**
      * Delete obj in DataBase
      * @param obj
      * @return true if obj was removed successfuly. False in otherwise.
      */
     public boolean remove(Object obj){
-        sf = HibernateUtil.getSessionFactory();
         boolean resp = false;
         try {
             Session s = sf.openSession();
@@ -86,14 +86,12 @@ public class Kimera {
         }
         return resp;
     }
-
     /**
      * Persist obj in DataBase
      * @param obj
      * @return true if obj was added suyccessfuly- False in otherwise.
      */
     public boolean add(Object obj){
-        sf = HibernateUtil.getSessionFactory();
         boolean resp = false;
         try {
             Session s = sf.openSession();
@@ -114,7 +112,6 @@ public class Kimera {
      * @return true if updated obj successfuly, false in otherwise
      */
     public boolean update(Object obj){
-        sf = HibernateUtil.getSessionFactory();
         boolean resp = false;
         try {
             Session s = sf.openSession();
@@ -138,7 +135,6 @@ public class Kimera {
      * @return Last object with the key param if exists. Otherwise returns null.
      */
     public <T> T getLast(String key, Class type){
-        sf = HibernateUtil.getSessionFactory();
         T result = null;
         try {
             Session s = sf.openSession();
@@ -151,8 +147,7 @@ public class Kimera {
         return result;
     }     
         
-    public <T> T byRestrictions(List<Criterion> restrictions, Class type){
-        sf = HibernateUtil.getSessionFactory();
+    public <T> T entityByRestrictions(List<Criterion> restrictions, Class type){
         Session s = sf.openSession();
         Criteria cri = s.createCriteria(type);
         Iterator i = restrictions.iterator();
@@ -167,7 +162,6 @@ public class Kimera {
     }
     
     public <T> T listByRestrictions(List<Criterion> restrictions, Class type){
-        sf = HibernateUtil.getSessionFactory();
         Session s = sf.openSession();
         Criteria cri = s.createCriteria(type);
         Iterator i = restrictions.iterator();
@@ -202,8 +196,7 @@ public class Kimera {
             return (T) entity;
     }
     
-    public <T> T withRestrictions(Map<String,Object> restrictions, Class type){
-        sf = HibernateUtil.getSessionFactory();
+    public <T> T listWithRestrictions(Map<String,Object> restrictions, Class type){
         Session s = sf.openSession();
         Criteria cri = s.createCriteria(type);
         for(Map.Entry<String,Object> entry : restrictions.entrySet()){
@@ -215,8 +208,7 @@ public class Kimera {
         return (T) output;
     }
     
-    public <T> T withParams(Map<String,Object> restrictions,Class type){
-        sf = HibernateUtil.getSessionFactory();
+    public <T> T entityWithParams(Map<String,Object> restrictions,Class type){
         Session s = sf.openSession();
         Criteria cri = s.createCriteria(type);
         for(Map.Entry<String,Object> entry : restrictions.entrySet()){
@@ -228,8 +220,7 @@ public class Kimera {
         return output;
     }
     
-    public <T> T withRestrictionsLike(Map<String,Object> restrictions, Class type){
-        sf = HibernateUtil.getSessionFactory();
+    public <T> T entityWithRestrictionsLike(Map<String,Object> restrictions, Class type){
         Session s = sf.openSession();
         Criteria cri = s.createCriteria(type);
         for(Map.Entry<String,Object> entry : restrictions.entrySet()){
@@ -241,8 +232,7 @@ public class Kimera {
         return (T) output;
     }
     
-    public <T> T withOneRestriction(String key, Object value, Class type){
-        sf = HibernateUtil.getSessionFactory();
+    public <T> T entityWithOneRestriction(String key, Object value, Class type){
         Session s = sf.openSession();
         Criteria cri = s.createCriteria(type);
         cri.add(Restrictions.eq(key, value));
@@ -252,8 +242,8 @@ public class Kimera {
         return (T) output;
     }
     
-    public <T> T byIdLike(String key, String value, Class type){
-        sf = HibernateUtil.getSessionFactory();
+    public <T> T entityByIdLike(String key, String value, Class type){
+        
         Session s = sf.openSession();
         Criteria cri = s.createCriteria(type);
         cri.add(Restrictions.like(key,"%" + value + "%"));
@@ -263,8 +253,7 @@ public class Kimera {
         return (T) output;
     }
     
-    public <T> T allOrderBy(String key, OrderBy order, Class type){
-        sf = HibernateUtil.getSessionFactory();
+    public <T> T listOrderBy(String key, OrderBy order, Class type){
         Session s = sf.openSession();
         Criteria c = s.createCriteria(type);
         c.addOrder(order.equals(OrderBy.ASC)? Order.asc(key): Order.desc(key));
@@ -274,8 +263,7 @@ public class Kimera {
         return (T) output;
     }
     
-    public <T> T withRestrictionsOrderBy(Map<String,Object> restrictions,String key, OrderBy order, Class type){
-        sf = HibernateUtil.getSessionFactory();
+    public <T> T entityWithRestrictionsOrderBy(Map<String,Object> restrictions,String key, OrderBy order, Class type){
         Session s = sf.openSession();
         Criteria cri = s.createCriteria(type);
         for(Map.Entry<String,Object> entry : restrictions.entrySet()){
@@ -288,8 +276,7 @@ public class Kimera {
         return (T) output;
     }
     
-    public <T> T withRestrictions(List<Criterion> restrictions, Class type){
-        sf = HibernateUtil.getSessionFactory();
+    public <T> T entityWithRestrictions(List<Criterion> restrictions, Class type){
         Session s = sf.openSession();
         Criteria cri = s.createCriteria(type);
         Iterator i = restrictions.iterator();
@@ -304,7 +291,6 @@ public class Kimera {
     }
     
     public List callProcedure(String query, Map<String,Object> params){
-        sf = HibernateUtil.getSessionFactory();
         List result = null;
         try {
             Session s = sf.openSession();
@@ -326,28 +312,11 @@ public class Kimera {
         return result;
     }
     
-    public <T> T betweenDates(String field, Date first, Date second, Class type){
-        sf = HibernateUtil.getSessionFactory();
+    public <T> T entityBetweenDates(String field, Date first, Date second, Class type){
         List<T> result = null;
         try {
             Session s = sf.openSession();
             result = s.createCriteria(type).add(Restrictions.between(field, first, second)).list();
-            s.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return (T) result;
-    }
-    public <T> T listWithRestrictionsAndOrder(List<Criterion> restrictions, Order o, Class type){
-        sf = HibernateUtil.getSessionFactory();
-        List<T> result = null;
-        try {
-            Session s = sf.openSession();
-            Criteria c = s.createCriteria(type);
-            for(Criterion r : restrictions){
-                c.add(r);
-            }
-            result = c.addOrder(o).list();
             s.close();
         } catch (Exception e) {
             e.printStackTrace();
