@@ -6,6 +6,7 @@
 package com.core.controller;
 
 import com.core.enums.OrderBy;
+import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Date;
@@ -26,7 +27,7 @@ import org.hibernate.criterion.Restrictions;
  * Class to implements the controller to get DataBase entities
  * @author Gonza
  */
-public class Kimera {
+public class Kimera implements Serializable{
     
     /**
      *
